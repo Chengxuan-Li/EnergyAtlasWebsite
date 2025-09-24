@@ -3,105 +3,919 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EnergyAtlas.io</title>
+  <meta name="description" content="EnergyAtlas.io - Your city-scale digital twin for fast, validated urban energy insight. ISO-compliant UBEM platform with ~150× faster simulations." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EnergyAtlas.io - Digital Twin Tool for Urban Energy Insight" />
+  <meta property="og:description" content="Your city-scale digital twin for fast, validated urban energy insight. ISO-compliant UBEM platform with ~150× faster simulations." />
+  <meta property="og:url" content="https://energyatlas.io" />
+  <meta property="og:image" content="https://energyatlas.io/assets/img/EnergyAtlasIcon.svg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="EnergyAtlas.io - Digital Twin Tool for Urban Energy Insight" />
+  <meta property="twitter:description" content="Your city-scale digital twin for fast, validated urban energy insight. ISO-compliant UBEM platform with ~150× faster simulations." />
+  <meta property="twitter:image" content="https://energyatlas.io/assets/img/EnergyAtlasIcon.svg" />
+
+  <title>EnergyAtlas.io - Digital Twin Tool for Urban Energy Insight</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Acumin+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+    :root {
+      --primary-color: #007acc;
+      --secondary-color: #005a99;
+      --accent-color: #00b4d8;
+      --text-dark: #1a1a1a;
+      --text-light: #666666;
+      --bg-light: #f8f9fa;
+      --bg-white: #ffffff;
+      --border-color: #e9ecef;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+      
+      --font-family: 'Acumin Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.125rem;
+      --font-size-xl: 1.25rem;
+      --font-size-2xl: 1.5rem;
+      --font-size-3xl: 1.875rem;
+      --font-size-4xl: 2.25rem;
+      --font-size-5xl: 3rem;
+      
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --spacing-2xl: 3rem;
+      --spacing-3xl: 4rem;
+      
+      --max-width: 1200px;
+      --border-radius: 8px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
-      color: #333;
+      box-sizing: border-box;
     }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
+
+    html {
+      scroll-behavior: smooth;
     }
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-      background: #fff;
-      margin-top: 1rem;
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
     }
-    h1, h2, h3 {
-      color: #111;
+
+    body {
+      font-family: var(--font-family);
+      font-weight: 200;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: var(--bg-white);
+      font-size: var(--font-size-base);
     }
-    ul {
-      padding-left: 1.5rem;
-    }
-    .cta {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .cta a {
-      display: inline-block;
-      background: #007acc;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--primary-color);
+      color: white;
+      padding: 8px;
       text-decoration: none;
-      border-radius: 5px;
-      margin: 0.5rem;
+      border-radius: var(--border-radius);
+      z-index: 1000;
     }
-    footer {
+
+    .skip-link:focus {
+      top: 6px;
+    }
+
+    /* Container */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .logo img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .logo-text {
+      font-weight: 600;
+      font-size: var(--font-size-xl);
+      font-family: 'Acumin Pro', sans-serif;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: var(--spacing-xl);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 300;
+      font-size: var(--font-size-sm);
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary-color);
+    }
+
+    nav a:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: var(--spacing-3xl) 0;
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
       text-align: center;
-      padding: 1rem;
-      background: #eee;
-      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-weight: 600;
+      font-size: var(--font-size-5xl);
+      margin-bottom: var(--spacing-lg);
+      color: var(--text-dark);
+      font-family: 'Acumin Pro', sans-serif;
+    }
+
+    .hero-subtitle {
+      font-size: var(--font-size-xl);
+      color: var(--text-light);
+      margin-bottom: var(--spacing-2xl);
+      font-weight: 200;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-2xl);
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-size: var(--font-size-sm);
+      font-weight: 400;
+      color: var(--text-dark);
+    }
+
+    .trust-badge::before {
+      content: "✓";
+      color: var(--success-color);
+      font-weight: 600;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: var(--spacing-md) var(--spacing-xl);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 400;
+      font-size: var(--font-size-base);
+      transition: all 0.2s ease;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary-color);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    /* Value Strip */
+    .value-strip {
+      padding: var(--spacing-3xl) 0;
+      background: var(--bg-white);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-xl);
+      text-align: center;
+    }
+
+    .value-item h3 {
+      font-weight: 300;
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-dark);
+      font-family: 'Acumin Pro', sans-serif;
+    }
+
+    .value-item p {
+      color: var(--text-light);
+      font-weight: 200;
+    }
+
+    /* Sections */
+    section {
+      padding: var(--spacing-3xl) 0;
+    }
+
+    section:nth-child(even) {
+      background: var(--bg-light);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .section-header h2 {
+      font-weight: 300;
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacing-md);
+      color: var(--text-dark);
+      font-family: 'Acumin Pro', sans-serif;
+    }
+
+    .section-header p {
+      color: var(--text-light);
+      font-weight: 200;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Key Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-xl);
+    }
+
+    .feature-item {
+      padding: var(--spacing-lg);
+      background: var(--bg-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-item h3 {
+      font-weight: 400;
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-dark);
+    }
+
+    .feature-item ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .feature-item li {
+      position: relative;
+      padding-left: var(--spacing-lg);
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-light);
+      font-weight: 200;
+    }
+
+    .feature-item li::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Modules */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-xl);
+    }
+
+    .module-card {
+      background: var(--bg-white);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .module-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto var(--spacing-md);
+    }
+
+    .module-card h3 {
+      font-weight: 300;
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacing-md);
+      color: var(--text-dark);
+      font-family: 'Acumin Pro', sans-serif;
+    }
+
+    .module-card ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .module-card li {
+      position: relative;
+      padding-left: var(--spacing-lg);
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-light);
+      font-weight: 200;
+      font-size: var(--font-size-sm);
+    }
+
+    .module-card li::before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Use Cases */
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-lg);
+    }
+
+    .use-case-item {
+      padding: var(--spacing-lg);
+      background: var(--bg-white);
+      border-radius: var(--border-radius);
+      text-align: center;
+      font-weight: 200;
+      color: var(--text-light);
+    }
+
+    /* Research & Validation */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .research-item {
+      text-align: center;
+      padding: var(--spacing-lg);
+    }
+
+    .research-item h4 {
+      font-weight: 400;
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-dark);
+    }
+
+    .research-item p {
+      color: var(--text-light);
+      font-weight: 200;
+      font-size: var(--font-size-sm);
+    }
+
+    .methods-pipeline {
+      background: var(--bg-white);
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      font-weight: 200;
+      color: var(--text-light);
+    }
+
+    /* Tech & Integrations */
+    .tech-icons {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xl);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .tech-icon {
+      padding: var(--spacing-md);
+      background: var(--bg-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      font-size: var(--font-size-sm);
+      font-weight: 400;
+      color: var(--text-dark);
+      min-width: 80px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callouts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--spacing-xl);
+    }
+
+    .callout {
+      background: var(--bg-white);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .callout img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .callout h3 {
+      font-weight: 400;
+      margin-bottom: var(--spacing-sm);
+      color: var(--text-dark);
+    }
+
+    .callout p {
+      color: var(--text-light);
+      font-weight: 200;
+      font-size: var(--font-size-sm);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text-dark);
+      color: white;
+      text-align: center;
+      padding: var(--spacing-2xl) 0;
+    }
+
+    footer p {
+      font-weight: 200;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--spacing-md);
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      nav ul {
+        gap: var(--spacing-md);
+      }
+
+      .hero h1 {
+        font-size: var(--font-size-4xl);
+      }
+
+      .hero-subtitle {
+        font-size: var(--font-size-lg);
+      }
+
+      .trust-badges {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .value-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid,
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .callouts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-icons {
+        gap: var(--spacing-md);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: var(--font-size-3xl);
+      }
+
+      .section-header h2 {
+        font-size: var(--font-size-2xl);
+      }
+
+      .module-card,
+      .callout {
+        padding: var(--spacing-lg);
+      }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-dark: #f8f9fa;
+        --text-light: #adb5bd;
+        --bg-white: #212529;
+        --bg-light: #343a40;
+        --border-color: #495057;
+      }
+
+      body {
+        background-color: var(--bg-white);
+      }
+
+      header {
+        background: rgba(33, 37, 41, 0.95);
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>EnergyAtlas.io</h1>
-    <p>Your Digital Twin for Urban Energy Insight</p>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <header role="banner">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo" aria-label="EnergyAtlas.io Home">
+          <img src="assets/img/EnergyAtlasIcon.svg" alt="EnergyAtlas Logo" />
+          <span class="logo-text">EnergyAtlas.io</span>
+        </a>
+        
+        <nav role="navigation" aria-label="Main navigation">
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#modules">Modules</a></li>
+            <li><a href="#use-cases">Use Cases</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#demo">Demo</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </header>
 
-  <section>
-    <h2>What is EnergyAtlas.io?</h2>
-    <p>EnergyAtlas.io is an urban-scale simulation platform that transforms cities into data-rich digital twins. Built on years of research in Urban Building Energy Modeling (UBEM), it enables users to simulate energy use, analyze decarbonization pathways, and prioritize retrofits city-wide.</p>
-  </section>
+  <main id="main">
+    <section class="hero" role="banner">
+      <div class="container">
+        <h1>EnergyAtlas.io</h1>
+        <p class="hero-subtitle">Your city-scale digital twin for fast, validated urban energy insight.</p>
+        
+        <div class="trust-badges">
+          <div class="trust-badge">ISO 52016-1</div>
+          <div class="trust-badge">~150× faster hourly simulations</div>
+          <div class="trust-badge">Smart-meter calibrated</div>
+        </div>
 
-  <section>
-    <h2>Key Features</h2>
-    <ul>
-      <li><strong>Urban Digital Twin Builder:</strong> Generate 3D building models using open and proprietary geospatial data.</li>
-      <li><strong>City-Scale Energy Simulation:</strong> Run operational energy use and emissions simulations across building stocks.</li>
-      <li><strong>Scenario Planning:</strong> Evaluate electrification, envelope upgrades, and renewables integration.</li>
-      <li><strong>Retrofit Prioritization:</strong> Identify cost-effective upgrades using building archetypes and emissions profiles.</li>
-      <li><strong>Public Dashboard:</strong> Communicate results through interactive maps and charts.</li>
-      <li><strong>Integration-Ready:</strong> Compatible with EnergyPlus, OpenStudio, and external dashboards.</li>
-    </ul>
-  </section>
+        <div class="cta-buttons">
+          <a href="#demo" class="btn btn-primary">Request a Demo</a>
+          <a href="#use-cases" class="btn btn-secondary">Explore Use Cases</a>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Use Cases</h2>
-    <ul>
-      <li>Municipal climate action planning</li>
-      <li>Resilience assessment under extreme weather</li>
-      <li>Policy simulations and compliance tracking</li>
-      <li>Equity mapping for energy interventions</li>
-      <li>Academic and policy research</li>
-    </ul>
-  </section>
+    <section class="value-strip">
+      <div class="container">
+        <div class="value-grid">
+          <div class="value-item">
+            <h3>Integrate</h3>
+            <p>Unify tax records, LiDAR, zoning, permits, and utility meter data into automated workflows.</p>
+          </div>
+          <div class="value-item">
+            <h3>Simulate</h3>
+            <p>Run ISO-compliant 5R1C hourly simulations at building-to-city scales with validated accuracy.</p>
+          </div>
+          <div class="value-item">
+            <h3>Prioritize</h3>
+            <p>Identify cost-effective retrofits with payback analysis and scenario comparison tools.</p>
+          </div>
+          <div class="value-item">
+            <h3>Communicate</h3>
+            <p>Share results through interactive 3D visualizations and cross-platform dashboards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Backed by Research</h2>
-    <p>EnergyAtlas.io is developed at Cornell University's Environmental Systems Lab and has been successfully applied in Ithaca, NYC, and Tompkins County to guide decarbonization and retrofit efforts.</p>
-  </section>
+    <section id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Key Features</h2>
+        </div>
+        
+        <div class="features-grid">
+          <div class="feature-item">
+            <h3>Urban Digital Twin Builder</h3>
+            <ul>
+              <li>Unify tax, parcels, zoning, LiDAR, permits, and meter data</li>
+            </ul>
+          </div>
+          
+          <div class="feature-item">
+            <h3>City-Scale Energy Simulation</h3>
+            <ul>
+              <li>ISO-compliant 5R1C models deliver building-to-city forecasts</li>
+            </ul>
+          </div>
+          
+          <div class="feature-item">
+            <h3>Scenario Planning</h3>
+            <ul>
+              <li>Electrification, envelope, PV, geothermal, district systems</li>
+            </ul>
+          </div>
+          
+          <div class="feature-item">
+            <h3>Retrofit Prioritization</h3>
+            <ul>
+              <li>Payback, incentives, lifecycle economics at scale</li>
+            </ul>
+          </div>
+          
+          <div class="feature-item">
+            <h3>Cross-Platform Visualization</h3>
+            <ul>
+              <li>Rhino/Grasshopper, Unity/Cesium, and a React/Mapbox web viewer</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section class="cta">
-    <h2>Ready to Transform Your City?</h2>
-    <a href="#">Join the Beta Program</a>
-    <a href="#">Request a Demo</a>
-    <a href="#">Explore Use Cases</a>
-  </section>
+    <section id="modules">
+      <div class="container">
+        <div class="section-header">
+          <h2>Modules</h2>
+        </div>
+        
+        <div class="modules-grid">
+          <div class="module-card">
+            <img src="assets/img/ModuleIcon_DataConnect.svg" alt="DataConnect Icon" class="module-icon" />
+            <h3>DataConnect</h3>
+            <ul>
+              <li>Hassle-free urban GIS ingest with automatic conversion & joins</li>
+              <li>Localized DOE/RECS archetypes and high-fidelity usage schedules</li>
+            </ul>
+          </div>
+          
+          <div class="module-card">
+            <img src="assets/img/ModuleIcon_OperationalEnergy.svg" alt="OperationalEnergy Icon" class="module-icon" />
+            <h3>OperationalEnergy</h3>
+            <ul>
+              <li>ISO 52016-1 5R1C hourly simulations, ~150× faster vs. traditional baselines</li>
+              <li>Validated against EnergyPlus and measured energy; BOBYQA calibration</li>
+            </ul>
+          </div>
+          
+          <div class="module-card">
+            <img src="assets/img/ModuleIcon_Renewables.svg" alt="Renewables Icon" class="module-icon" />
+            <h3>Renewables</h3>
+            <ul>
+              <li>PV potential via fast voxel shading & ray marching</li>
+              <li>Geothermal and district energy modeling at city scale</li>
+            </ul>
+          </div>
+          
+          <div class="module-card">
+            <img src="assets/img/ModuleIcon_RetrofitEconomics.svg" alt="RetrofitEconomics Icon" class="module-icon" />
+            <h3>RetrofitEconomics</h3>
+            <ul>
+              <li>Payback, incentives, lifecycle costs for portfolio design</li>
+              <li>Map "lower-hanging fruit" and compare scenario mixes</li>
+            </ul>
+          </div>
+          
+          <div class="module-card">
+            <img src="assets/img/ModuleIcon_GeoSpatial3D.svg" alt="Geospatial3D Icon" class="module-icon" />
+            <h3>Geospatial3D</h3>
+            <ul>
+              <li>Interactive twins across Rhino/Grasshopper, web, and Unity/Cesium</li>
+              <li>FacadeScanner™ 3D reconstruction & façade texture segmentation (e.g., WWR)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    <p><strong>Contact:</strong> Dr. Timur Dogan – info@energyatlas.io</p>
-    <p>&copy; 2025 EnergyAtlas.io</p>
+    <section id="use-cases">
+      <div class="container">
+        <div class="section-header">
+          <h2>Use Cases</h2>
+        </div>
+        
+        <div class="use-cases">
+          <div class="use-case-item">Municipal climate action planning</div>
+          <div class="use-case-item">Resilience under extreme weather</div>
+          <div class="use-case-item">Policy simulations & compliance tracking</div>
+          <div class="use-case-item">Equity mapping for interventions</div>
+          <div class="use-case-item">Academic & policy research at urban scale</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container">
+        <div class="section-header">
+          <h2>Research & Validation</h2>
+        </div>
+        
+        <div class="research-grid">
+          <div class="research-item">
+            <h4>Standards</h4>
+            <p>Reduced-order 5R1C per ISO 52016-1:2017</p>
+          </div>
+          
+          <div class="research-item">
+            <h4>Speed</h4>
+            <p>Up to ~150× faster hourly simulations vs. traditional baselines</p>
+          </div>
+          
+          <div class="research-item">
+            <h4>Validation</h4>
+            <p>Benchmarked vs. EnergyPlus and billed energy; calibrated with BOBYQA</p>
+          </div>
+          
+          <div class="research-item">
+            <h4>Outcomes</h4>
+            <p>Accurate peak-load, electrification impact, and retrofit assessments across building stocks</p>
+          </div>
+        </div>
+        
+        <div class="methods-pipeline">
+          <p>Our automated pipeline integrates multiple data sources (tax records, LiDAR, zoning, DOE/RECS archetypes, permits, utility meters) into validated simulation workflows, enabling city-scale energy modeling with unprecedented speed and accuracy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Tech & Integrations</h2>
+        </div>
+        
+        <div class="tech-icons">
+          <div class="tech-icon">Rhino</div>
+          <div class="tech-icon">Grasshopper</div>
+          <div class="tech-icon">Unity</div>
+          <div class="tech-icon">Cesium</div>
+          <div class="tech-icon">React</div>
+          <div class="tech-icon">Mapbox</div>
+          <div class="tech-icon">Bentley iTwin</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Key Insights</h2>
+        </div>
+        
+        <div class="callouts-grid">
+          <div class="callout">
+            <img src="assets/img/pv-potential.jpg" alt="Map of rooftop PV potential vs electricity demand" />
+            <h3>PV Self-Sufficiency Mapping</h3>
+            <p>Identify buildings/sectors where rooftop PV can offset demand under multiple yield benchmarks.</p>
+          </div>
+          
+          <div class="callout">
+            <img src="assets/img/retrofit-payback.jpg" alt="Histogram of retrofit scenario payback periods" />
+            <h3>Retrofit Payback Distributions</h3>
+            <p>Visualize feasibility across scenarios (Electrification, Envelope, PV, combos) to target funds effectively.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="container">
+        <div class="section-header">
+          <h2>Ready to Transform Your City?</h2>
+        </div>
+        
+        <div class="cta-buttons">
+          <a href="mailto:info@energyatlas.io?subject=Beta Program Inquiry" class="btn btn-primary">Join the Beta</a>
+          <a href="mailto:info@energyatlas.io?subject=Demo Request" class="btn btn-primary">Request a Demo</a>
+          <a href="#use-cases" class="btn btn-secondary">Explore Use Cases</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p><strong>Contact:</strong> <a href="mailto:info@energyatlas.io">Dr. Timur Dogan — info@energyatlas.io</a></p>
+      <p>&copy; 2025 EnergyAtlas.io — Environmental Systems Lab</p>
+    </div>
   </footer>
 </body>
 </html>
