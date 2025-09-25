@@ -211,7 +211,9 @@
 
     @media (max-width: 768px) {
       .hero video {
-        display: none;
+        display: block;
+        object-fit: cover;
+        object-position: center;
       }
       
       .hero {
@@ -917,6 +919,33 @@
       .tech-icons {
         gap: var(--spacing-md);
       }
+
+      /* Fix card widths for mobile */
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .research-item,
+      .media-item {
+        max-width: 100%;
+        word-wrap: break-word;
+      }
+      
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Make navigation smaller on mobile */
+      nav ul {
+        gap: var(--spacing-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      nav a {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1078,7 +1107,6 @@
             <li><a href="#research">Research</a></li>
             <li><a href="#media">Media</a></li>
             <li><a href="#team">Team</a></li>
-            <li><a href="#tech-stack">Tech</a></li>
             <li><a href="#demo">Demo</a></li>
           </ul>
         </nav>
