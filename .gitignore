@@ -13,6 +13,9 @@ build/
 # Astro
 .astro/
 
+# Redundant legacy assets directory (use public/assets instead)
+assets/
+
 # Environment variables
 .env
 .env.local
