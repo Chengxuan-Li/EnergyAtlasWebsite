@@ -675,13 +675,13 @@
       font-size: var(--font-size-xs);
       font-weight: 400;
       font-variation-settings: 'wdth' 125, 'wght' 400;
-      color: var(--secondary-color);
+      color: var(--primary-color);
       margin-bottom: 0;
       font-family: monospace;
     }
 
     .publication-doi a {
-      color: var(--secondary-color);
+      color: var(--primary-color);
       text-decoration: none;
       transition: color 0.2s ease;
     }
@@ -703,7 +703,7 @@
       padding: var(--spacing-lg);
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
-      border-left: 4px solid var(--secondary-color);
+      border-left: 4px solid var(--primary-color);
     }
 
     .media-item h4 {
@@ -711,7 +711,7 @@
       font-weight: 600;
       font-variation-settings: 'wdth' 150, 'wght' 400;
       letter-spacing: -0.02em;
-      color: var(--secondary-color);
+      color: var(--primary-color);
       margin-bottom: var(--spacing-sm);
     }
 
@@ -739,7 +739,7 @@
       font-size: var(--font-size-xs);
       font-weight: 400;
       font-variation-settings: 'wdth' 125, 'wght' 400;
-      color: var(--secondary-color);
+      color: var(--primary-color);
       margin-bottom: 0;
       font-family: monospace;
     }
@@ -751,7 +751,7 @@
     }
 
     .media-doi a:hover {
-      color: var(--secondaru-color);
+      color: var(--secondary-color);
       text-decoration: underline;
     }
 
@@ -1089,6 +1089,34 @@
 
       header {
         background: rgba(33, 37, 41, 0.95);
+      }
+
+      /* Keep footer appearance consistent with light mode */
+      footer {
+        background: #1a1a1a; /* same as light-mode footer base */
+        color: white;
+      }
+
+      /* Publications: switch accents to secondary in dark mode */
+      .publication-item {
+        border-left-color: var(--secondary-color);
+      }
+
+      .publication-item h4,
+      .publication-doi,
+      .publication-doi a {
+        color: var(--secondary-color);
+      }
+
+      /* Media: switch accents to secondary in dark mode */
+      .media-item {
+        border-left-color: var(--secondary-color);
+      }
+
+      .media-item h4,
+      .media-doi,
+      .media-doi a {
+        color: var(--secondary-color);
       }
     }
   </style>
